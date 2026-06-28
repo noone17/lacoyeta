@@ -148,17 +148,21 @@
     // Try autoplay on load; browsers without a user gesture will block this.
     bgMusicEl.play().catch(() => {});
 
-    // Fallback: start on first tap/click/scroll if autoplay was blocked.
+    // Fallback: start on first tap/click if autoplay was blocked.
+    // Note: 'scroll' does NOT count as a user gesture for autoplay
+    // unlocking in any browser — only real click/touch/key events do.
     // Also "primes" bdayMusic with a play+pause so iOS Safari unlocks it
     // for the later hands-off play() triggered by the scroll observer below.
     function unlockAudio() {
       if (bgMusicEl.paused) bgMusicEl.play().catch(() => {});
       bdayMusicEl.play().then(() => bdayMusicEl.pause()).catch(() => {});
-      window.removeEventListener('pointerdown', unlockAudio);
-      window.removeEventListener('scroll', unlockAudio);
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('touchend', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
     }
-    window.addEventListener('pointerdown', unlockAudio, { once: true });
-    window.addEventListener('scroll', unlockAudio, { once: true });
+    window.addEventListener('click', unlockAudio, { once: true });
+    window.addEventListener('touchend', unlockAudio, { once: true });
+    window.addEventListener('keydown', unlockAudio, { once: true });
 
     // Fade volume helper
     function fadeVol(audio, from, to, ms) {

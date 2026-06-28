@@ -56,14 +56,18 @@
     // Try autoplay on load; browsers without a user gesture will block this.
     m.play().catch(() => {});
 
-    // Fallback: start on the first tap/click/scroll if autoplay was blocked.
+    // Fallback: start on the first tap/click if autoplay was blocked.
+    // Note: 'scroll' does NOT count as a user gesture for autoplay
+    // unlocking in any browser — only real click/touch/key events do.
     function unlockAudio() {
       if (m.paused) m.play().catch(() => {});
-      window.removeEventListener('pointerdown', unlockAudio);
-      window.removeEventListener('scroll', unlockAudio);
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('touchend', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
     }
-    window.addEventListener('pointerdown', unlockAudio, { once: true });
-    window.addEventListener('scroll', unlockAudio, { once: true });
+    window.addEventListener('click', unlockAudio, { once: true });
+    window.addEventListener('touchend', unlockAudio, { once: true });
+    window.addEventListener('keydown', unlockAudio, { once: true });
   </script>
   <script src="story.js"></script>
 </body>
