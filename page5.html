@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <script>if (localStorage.getItem('lacoyetaUnlocked') !== 'true') location.replace('login.html');</script>
+  <script>if (sessionStorage.getItem('lacoyetaUnlocked') !== 'true') location.replace('login.html');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Comic — For Lacoyeta</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,13 +48,20 @@
 
   </main>
 
+  <p class="music-hint" id="musicHint">♪ tap anywhere for the music</p>
+
   <audio id="bgMusic" loop><source src="music/lofi-japan.mp3" type="audio/mpeg" /></audio>
   <script>
     const m = document.getElementById('bgMusic');
+    const hint = document.getElementById('musicHint');
     m.volume = 0.35;
 
     // Try autoplay on load; browsers without a user gesture will block this.
     m.play().catch(() => {});
+
+    // Show the hint only if autoplay actually got blocked.
+    setTimeout(() => { if (m.paused) hint.classList.add('visible'); }, 400);
+    m.addEventListener('play', () => hint.classList.remove('visible'));
 
     // Fallback: start on the first tap/click if autoplay was blocked.
     // Note: 'scroll' does NOT count as a user gesture for autoplay
