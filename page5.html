@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>if (localStorage.getItem('lacoyetaUnlocked') !== 'true') location.replace('login.html');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Comic — For Lacoyeta</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,11 +50,20 @@
 
   <audio id="bgMusic" loop><source src="music/lofi-japan.mp3" type="audio/mpeg" /></audio>
   <script>
-    // Auto-play softly on load
-    window.addEventListener('load', () => {
-      const m = document.getElementById('bgMusic');
-      m.volume = 0.35; m.play().catch(()=>{});
-    });
+    const m = document.getElementById('bgMusic');
+    m.volume = 0.35;
+
+    // Try autoplay on load; browsers without a user gesture will block this.
+    m.play().catch(() => {});
+
+    // Fallback: start on the first tap/click/scroll if autoplay was blocked.
+    function unlockAudio() {
+      if (m.paused) m.play().catch(() => {});
+      window.removeEventListener('pointerdown', unlockAudio);
+      window.removeEventListener('scroll', unlockAudio);
+    }
+    window.addEventListener('pointerdown', unlockAudio, { once: true });
+    window.addEventListener('scroll', unlockAudio, { once: true });
   </script>
   <script src="story.js"></script>
 </body>

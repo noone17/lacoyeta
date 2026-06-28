@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>if (localStorage.getItem('lacoyetaUnlocked') !== 'true') location.replace('login.html');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fragments From That Evening</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -366,6 +367,11 @@
   document.getElementById('startBtn').addEventListener('click', () => {
     const music = document.getElementById('bgMusic');
     if (music.paused) { music.volume = 0.32; music.play().catch(()=>{}); }
+    // Prime birdAudio with a play+pause now, while we have a real user
+    // gesture, so the later hands-off play() from the scroll observer
+    // below isn't blocked by mobile autoplay restrictions.
+    const bird = document.getElementById('birdAudio');
+    bird.play().then(() => bird.pause()).catch(() => {});
     const op = document.getElementById('opening');
     op.classList.add('fade-out');
     setTimeout(() => {

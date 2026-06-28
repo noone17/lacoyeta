@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(git ls-remote *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(which chromium-cli *)",
+      "Read(//private/tmp/claude-501/bundled-skills/2.1.195/**)"
     ]
   }
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Lacoyeta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <main class="login-page">
+
+    <!-- ── LEFT · PHOTO ──────────────────────────────────────────────── -->
+    <section class="login-photo-side">
+      <div class="login-frame">
+        <div class="login-frame-inner">
+          <img src="login-pic.jpeg" alt="" />
+        </div>
+        <span class="login-frame-caption">five feet of quiet magic.</span>
+      </div>
+    </section>
+
+    <!-- ── RIGHT · PIN ───────────────────────────────────────────────── -->
+    <section class="login-form-side">
+      <div class="login-card">
+        <p class="login-kicker">For Lacoyeta</p>
+        <h1 class="login-title">Enter to continue.</h1>
+        <p class="login-sub">You know the date.</p>
+
+        <form id="loginForm" class="login-form" autocomplete="off">
+          <input
+            type="password"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="8"
+            id="pinInput"
+            class="login-input"
+            placeholder="• • • • • • • •"
+            autocomplete="off"
+          />
+          <button type="submit" class="login-btn">Unlock</button>
+        </form>
+
+        <p class="login-error" id="loginError">That's not quite it. Try again.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const PIN = '09072007';
+    const form  = document.getElementById('loginForm');
+    const input = document.getElementById('pinInput');
+    const error = document.getElementById('loginError');
+    const card  = document.querySelector('.login-card');
+
+    if (localStorage.getItem('lacoyetaUnlocked') === 'true') {
+      location.replace('index.html');
+    }
+
+    input.focus();
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value === PIN) {
+        localStorage.setItem('lacoyetaUnlocked', 'true');
+        location.href = 'index.html';
+      } else {
+        error.classList.add('visible');
+        card.classList.remove('shake');
+        requestAnimationFrame(() => card.classList.add('shake'));
+        input.value = '';
+        input.focus();
+      }
+    });
+  </script>
+</body>
+</html>
