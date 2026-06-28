@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Comic — For Lacoyeta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="story.css" />
+</head>
+<body>
+
+  <main class="story-page">
+
+    <!-- ── Header ────────────────────────────────────────────────────── -->
+    <header class="comic-header reveal">
+      <p class="story-kicker">page 5 · the comic</p>
+      <h1>And then I drew it.</h1>
+      <p class="comic-sub">Because some things are easier to say in pictures.</p>
+    </header>
+
+    <!-- ── Comic ─────────────────────────────────────────────────────── -->
+    <section class="comic-section" aria-label="The comic">
+      <div class="comic-wrap reveal">
+        <img class="comic-img" src="comic_generated_v2.png" alt="A comic made for Lacoyeta" />
+      </div>
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────────────── -->
+    <footer class="comic-footer reveal">
+      <p class="comic-note">Made with a little too much feeling, and zero regrets.</p>
+      <p class="story-signature">— Sathyan</p>
+    </footer>
+
+    <!-- ── NAV ───────────────────────────────────────────────────────── -->
+    <nav class="story-nav reveal">
+      <a class="story-nav-back" href="page4.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to page 4
+      </a>
+      <a class="story-nav-next" href="page6.html">
+        One last thing
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </nav>
+
+  </main>
+
+  <audio id="bgMusic" loop><source src="music/lofi-japan.mp3" type="audio/mpeg" /></audio>
+  <script>
+    // Auto-play softly on load
+    window.addEventListener('load', () => {
+      const m = document.getElementById('bgMusic');
+      m.volume = 0.35; m.play().catch(()=>{});
+    });
+  </script>
+  <script src="story.js"></script>
+</body>
+</html>

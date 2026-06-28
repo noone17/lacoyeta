@@ -1,0 +1,408 @@
+:root {
+  --bg: #f3faf3;
+  --ink: #182321;
+  --muted: #52605d;
+  --line: rgba(24, 35, 33, 0.12);
+  --petal: #c44963;
+  --leaf: #35785f;
+  --sun: #f3c14b;
+  --shadow: 0 22px 55px rgba(24, 35, 33, 0.12);
+  font-family: "Inter", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+
+/* ── Page ─────────────────────────────────────────────────────────────── */
+.p6-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(53,120,95,0.07) 1px, transparent 1px),
+    linear-gradient(180deg, #f3faf3 0%, #ffffff 50%, #eef9f1 100%);
+  background-size: 64px 64px, auto;
+}
+
+/* ── Opening ──────────────────────────────────────────────────────────── */
+.p6-opening {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(5rem, 14vw, 9rem) 1.5rem clamp(3rem, 8vw, 5rem);
+}
+
+.p6-opening-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.p6-kicker {
+  color: var(--muted);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.p6-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+
+/* ── Letter section ───────────────────────────────────────────────────── */
+.p6-letter-section {
+  padding: 0 0 clamp(4rem, 10vw, 7rem);
+}
+
+.p6-letter-wrap {
+  width: min(680px, calc(100% - 48px));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+/* ── Prose block ──────────────────────────────────────────────────────── */
+.p6-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.p6-prose {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.p6-highlight {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+}
+
+/* ── Divider thought ──────────────────────────────────────────────────── */
+.p6-divider-thought {
+  text-align: center;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.p6-divider-thought::before,
+.p6-divider-thought::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 28%;
+  height: 1px;
+  background: var(--line);
+}
+
+.p6-divider-thought::before { left: 0; }
+.p6-divider-thought::after  { right: 0; }
+
+.p6-divider-thought span {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  font-style: italic;
+  color: var(--petal);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--bg);
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Before list ──────────────────────────────────────────────────────── */
+.p6-before-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding-left: 0.5rem;
+}
+
+.p6-before-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.p6-before-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--petal);
+  margin-top: 0.65em;
+}
+
+.p6-before-item p {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* ── Big statement ────────────────────────────────────────────────────── */
+.p6-statement {
+  text-align: center;
+  padding: clamp(1rem, 3vw, 2rem) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.p6-statement p {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* ── Line divider ─────────────────────────────────────────────────────── */
+.p6-line-divider {
+  height: 1px;
+  background: var(--line);
+  margin: clamp(0.5rem, 2vw, 1rem) 0;
+}
+
+/* ── Birthday block ───────────────────────────────────────────────────── */
+.p6-birthday-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.2rem, 4vw, 2rem);
+  border-left: 3px solid var(--sun);
+  background: rgba(243,193,75,0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.p6-birthday-label {
+  color: var(--leaf);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+/* ── Closing ──────────────────────────────────────────────────────────── */
+.p6-closing {
+  text-align: center;
+  padding: clamp(2rem, 5vw, 3.5rem) 0 0;
+}
+
+.p6-closing-line {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+/* ── Wishes ───────────────────────────────────────────────────────────── */
+.p6-wishes {
+  text-align: center;
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.p6-wishes-text {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.p6-wishes-name {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.p6-signature {
+  margin-top: 0.8rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-weight: 600;
+  color: var(--petal);
+  letter-spacing: 0.04em;
+}
+
+/* ── Nav ──────────────────────────────────────────────────────────────── */
+.p6-nav {
+  width: min(680px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 4rem) 0 clamp(3rem, 8vw, 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+
+.p6-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.p6-back-btn:hover {
+  color: var(--ink);
+  border-color: var(--petal);
+  transform: translateX(-3px);
+}
+
+.p6-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.p6-home-btn:hover {
+  color: var(--ink);
+  border-color: var(--leaf);
+}
+
+/* ── Scroll reveal ────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 820ms cubic-bezier(0.22,1,0.36,1),
+              transform 820ms cubic-bezier(0.22,1,0.36,1);
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .p6-title { font-size: clamp(3rem, 18vw, 5rem); }
+  .p6-wishes-name { font-size: clamp(2.2rem, 14vw, 4rem); }
+  .p6-statement p { font-size: clamp(1.8rem, 10vw, 3rem); }
+}
+
+/* ── Birthday photos ──────────────────────────────────────────────────── */
+
+.p6-bday-photos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(0.6rem, 2vw, 1.4rem);
+  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(1rem, 3vw, 2rem);
+  flex-wrap: wrap;
+}
+
+.p6-bday-frame {
+  background: #f5f0e8;
+  padding: 10px 10px 38px;
+  box-shadow: 0 8px 32px rgba(24,35,33,0.18), 0 2px 8px rgba(24,35,33,0.1);
+  width: clamp(140px, 26vw, 220px);
+  flex-shrink: 0;
+  transition: box-shadow 280ms ease, transform 280ms ease;
+}
+
+.p6-bday-frame img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.p6-bday-frame:hover {
+  box-shadow: 0 16px 48px rgba(24,35,33,0.24);
+  z-index: 2;
+}
+
+.p6-bday--tilt-l  { transform: rotate(-3deg); }
+.p6-bday--tilt-r  { transform: rotate(2.5deg); }
+.p6-bday--tilt-l2 { transform: rotate(-1.2deg) translateY(-10px); }
+
+.p6-bday--tilt-l:hover  { transform: rotate(-1deg) scale(1.04); }
+.p6-bday--tilt-r:hover  { transform: rotate(1deg) scale(1.04); }
+.p6-bday--tilt-l2:hover { transform: rotate(-0.5deg) scale(1.04) translateY(-10px); }
+
+@media (max-width: 520px) {
+  .p6-bday-frame { width: clamp(110px, 28vw, 160px); }
+}
+
+/* ── Pretty note ──────────────────────────────────────────────────────── */
+
+.p6-pretty-note {
+  text-align: center;
+  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(1rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.p6-pretty-note p:first-child {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.p6-pretty-main {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}

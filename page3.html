@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>That Day — For Lacoyeta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="page2.css" />
+</head>
+<body>
+
+  <main class="p2-page">
+
+    <!-- ── HERO ──────────────────────────────────────────────────────── -->
+    <section class="p2-hero" aria-label="That day">
+      <img class="p2-hero-photo" src="page3top.jpg" alt="That afternoon in Trichy" />
+      <div class="p2-hero-shade"></div>
+      <div class="p2-hero-copy">
+        <p class="p2-kicker">page 3 · that day finally came</p>
+        <h1>Chennai to Trichy.</h1>
+        <p>Just to see you.</p>
+        <a class="p2-button" href="#story">Read on</a>
+      </div>
+    </section>
+
+    <!-- ── STORY SECTION ─────────────────────────────────────────────── -->
+    <section id="story" class="p2-poem-section" aria-label="That day">
+      <div class="p2-wrap">
+
+        <!-- Left strip — fish pic -->
+        <div class="p2-side-strip">
+          <img src="page3side.jpg" alt="That afternoon in Trichy" />
+          <p>Some moments don't need a plan. They just happen, and you're glad they did.</p>
+        </div>
+
+        <!-- Right card — the story -->
+        <article class="p2-card">
+          <p class="p2-card-title">That day finally came.</p>
+
+          <div class="p2-stanza reveal">
+            <p>I traveled from Chennai to Trichy just to see you.</p>
+            <p>I came to pick you up at the bus stand, and there you were —</p>
+            <p>waiting for me in the middle of all that noisy afternoon traffic.</p>
+          </div>
+
+          <div class="p2-stanza reveal">
+            <p class="p2-highlight-line">Black dress. Headphones. Backpack.</p>
+            <p class="p2-highlight-line">Tiny earrings. Your bangleless hands.</p>
+            <p class="p2-highlight-line">Loose hair dancing in the hot midday wind.</p>
+          </div>
+
+          <div class="p2-stanza reveal">
+            <p>I took you on my bike, and we ended up going to a café —</p>
+            <p>even though I never really planned any of it.</p>
+          </div>
+
+          <div class="p2-stanza reveal">
+            <p>And somewhere in the middle of the road,</p>
+            <p>right in front of the café,</p>
+            <p>with absolutely no surprise planning or dramatic setup…</p>
+          </div>
+
+          <div class="p2-accent-block reveal">
+            <p>I just awkwardly pulled the gift from my bike and handed it to you.</p>
+          </div>
+
+          <!-- Gift image inside the card -->
+          <div class="p2-inline-img reveal">
+            <img src="images/gift (2).jpg" alt="The gift" />
+          </div>
+
+          <div class="p2-stanza reveal p2-muted">
+            <p>When you started opening it,</p>
+            <p>a part of me wanted to record everything —</p>
+            <p>your reaction, your smile, your excitement.</p>
+          </div>
+
+          <div class="p2-stanza reveal p2-muted">
+            <p>But then I remembered something. A Latin phrase:</p>
+          </div>
+
+          <div class="p2-questions reveal">
+            <p>"Carpe Diem."</p>
+            <p>Seize the moment.</p>
+          </div>
+
+          <div class="p2-stanza reveal">
+            <p>So instead of watching you through a camera,</p>
+            <p>I wanted to stay inside that moment with you.</p>
+          </div>
+
+          <div class="p2-stanza reveal">
+            <p>The way you opened the gift…</p>
+            <p>You didn't tear the wrapping apart.</p>
+            <p>You unfolded it slowly, layer by layer.</p>
+          </div>
+
+          <p class="p2-closing reveal">And the expressions on your face — your excitement, your happiness, that quiet little joy — somehow made the entire journey worth it.</p>
+          <p class="p2-signature reveal">— Sathyan</p>
+        </article>
+
+      </div>
+
+      <!-- Navigation -->
+      <div class="p2-back-wrap">
+        <a class="p2-back-btn" href="page2.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          <span>Back to page 2</span>
+        </a>
+        <a class="p2-next-btn" href="page4.html">
+          <span>Bird Sanctuary</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <audio id="bgMusic" loop>
+    <source src="music/tango.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    document.querySelector('.p2-button').addEventListener('click', function () {
+      const music = document.getElementById('bgMusic');
+      if (music && music.paused) { music.volume = 0.38; music.play().catch(() => {}); }
+    });
+
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>

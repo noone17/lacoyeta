@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Lacoyeta</title>
+  <meta
+    name="description"
+    content="A small note for Lacoyeta, written with quiet magic, laughter, and one unforgettable surprise."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lacoyeta.css" />
+</head>
+<body>
+
+  <main class="letter-page">
+    <section class="opening" aria-label="A note for Lacoyeta">
+      <img
+        class="opening-photo"
+        src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1600&q=80"
+        alt="Soft wildflowers in morning light"
+      />
+      <div class="opening-shade"></div>
+      <div class="opening-copy">
+        <p class="kicker">For Lacoyeta</p>
+        <h1>Five feet of quiet magic.</h1>
+        <p>The kind you do not notice until you do.</p>
+        <a class="button" href="#letter" onclick="playMusic()">Read this</a>
+      </div>
+    </section>
+
+    <section id="letter" class="letter-section" aria-label="The letter">
+      <div class="letter-wrap">
+        <div class="portrait-strip">
+          <img
+            src="https://images.unsplash.com/photo-1518709779341-56cf4535e94b?auto=format&fit=crop&w=900&q=80"
+            alt="A quiet path surrounded by flowers"
+          />
+          <p>Some people arrive softly and still change the whole room.</p>
+        </div>
+
+        <article class="letter">
+          <p class="small-title">Her name is Lacoyeta</p>
+          <p>She is just five feet of quiet magic, the kind you do not notice until you do.</p>
+          <p>The first time I saw her, she stood there in her uniform, curly hair neatly pinned, a genuine smile that did not try too hard, and eyes that never even lifted to meet mine.</p>
+          <p>I thought she was shy. Soft, distant, unreadable. Like a story that whispers instead of speaking.</p>
+          <p>But then I heard her voice. Calm, steady, strangely mature, like she had lived more life than she showed.</p>
+          <p>And then, slowly, she unfolded.</p>
+          <p>She was not just that quiet girl anymore. She became laughter in the middle of nothing, a little innocent, a little mischievous, and sometimes a complete fraud in the cutest way possible.</p>
+          <p>And somewhere in all of that, I realized - no expensive perfume could ever compare to the quiet scent of her curly hair.</p>
+          <p>She proved me wrong in the best way.</p>
+          <p>Now I see her differently. Not as the girl who looked down that day, but as the one who somehow lifted my world up without even trying.</p>
+          <p class="closing">Lacoyeta, you are not just small and sweet. You are unexpected, and that is what makes you unforgettable.</p>
+          <p class="signature">— In words, Sathyan</p>
+        </article>
+      </div>
+
+      <!-- Page 1 ending teaser -->
+      <div class="page1-ending">
+        <p class="ending-line">You asked me to write again after meeting you.</p>
+        <p class="ending-line">So here's what meeting you felt like.…</p>
+        <a class="next-page-btn" href="page2.html">
+          <span>Continue reading</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <audio id="bgMusic" loop>
+    <source src="music/piano.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+function playMusic() {
+  const music = document.getElementById("bgMusic");
+  if (music.paused) {
+    music.volume = 0.38;
+    music.play();
+  } else {
+    music.pause();
+    music.currentTime = 0;
+  }
+}
+</script>
+</body>
+</html>

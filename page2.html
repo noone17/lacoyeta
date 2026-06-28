@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>After Meeting You — For Lacoyeta</title>
+  <meta name="description" content="Page 2. After meeting you. Written with quiet honesty." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="page2.css" />
+</head>
+<body>
+
+  <main class="p2-page">
+
+    <!-- ── HERO (mirrors page 1 opening) ─────────────────────────────── -->
+    <section class="p2-hero" aria-label="Page 2 opening">
+      <img
+        class="p2-hero-photo"
+        src="page2top.jpg"
+        alt="Page 2 hero"
+      />
+      <div class="p2-hero-shade"></div>
+      <div class="p2-hero-copy">
+        <p class="p2-kicker">After Meeting You — For Lacoyeta</p>
+        <h1>You asked me to write again.</h1>
+        <p>So here’s what meeting you felt like.</p>
+        <a class="p2-button" href="#poem">Read on</a>
+      </div>
+    </section>
+
+    <!-- ── POEM SECTION (mirrors letter-section) ─────────────────────── -->
+    <section id="poem" class="p2-poem-section" aria-label="The poem">
+      <div class="p2-wrap">
+
+        <!-- Left strip (mirrors portrait-strip) -->
+        <div class="p2-side-strip">
+          <img
+            src="page2side.jpg"
+            alt="Page 2 side"
+          />
+          <p>Some people scare away little things.You make them stay.</p>
+        </div>
+
+        <!-- Right poem card (mirrors .letter card) -->
+        <article class="p2-card">
+          <p class="p2-card-title">5 feet of quiet magic — met in person.</p>
+
+          <!-- Curler section -->
+          <div class="p2-stanza reveal">
+            <p>When you said you wanted that curler,</p>
+            <p>for a second,</p>
+            <p>I thought about buying it for you.</p>
+          </div>
+
+          <div class="p2-stanza reveal p2-muted">
+            <p>But then my mind started asking silly questions…</p>
+          </div>
+
+          <div class="p2-questions reveal">
+            <p>How?</p>
+            <p>You're far away.</p>
+            <p>What if you don't like it?</p>
+            <p>What would you tell at home?</p>
+          </div>
+
+          <!-- Emotional shift -->
+          <div class="p2-stanza reveal p2-muted">
+            <p>And somewhere between all those thoughts,</p>
+            <p>I realized something.</p>
+          </div>
+
+          <div class="p2-accent-block reveal">
+            <p>I didn't just want to send you gifts.</p>
+          </div>
+
+          <div class="p2-headline-block reveal">
+            <p>I wanted to see you.</p>
+          </div>
+
+          <!-- Continue smoothly -->
+          <div class="p2-stanza reveal">
+            <p>I've already heard your voice,</p>
+            <p>your laugh,</p>
+            <p>your sadness,</p>
+            <p>your bullying,</p>
+            <p>your laziness,</p>
+            <p>your nonstop blabbering…</p>
+          </div>
+
+          <div class="p2-stanza reveal">
+            <p>But I wanted to <em>witness</em> all of it in person.</p>
+          </div>
+
+          <div class="p2-stanza reveal">
+            <p>That's why I came all the way from a long distance,</p>
+            <p>just to spend a few hours with you.</p>
+          </div>
+
+          <!-- Ending -->
+          <div class="p2-stanza reveal p2-muted">
+            <p>And honestly?</p>
+            <p>Even if it was only for two minutes…</p>
+          </div>
+
+          <p class="p2-closing reveal">I still would've come.</p>
+          <p class="p2-signature reveal">— Sathyan</p>
+        </article>
+
+      </div>
+
+      <!-- Navigation -->
+      <div class="p2-back-wrap">
+        <a class="p2-back-btn" href="index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          <span>Back to page 1</span>
+        </a>
+        <a class="p2-next-btn" href="page3.html">
+          <span>That day →</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <audio id="bgMusic" loop>
+    <source src="music/soft-jazz.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    document.querySelector('.p2-button').addEventListener('click', function () {
+      const music = document.getElementById('bgMusic');
+      if (music.paused) { music.volume = 0.38; music.play().catch(() => {}); }
+    });
+
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>
