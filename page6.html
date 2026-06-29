@@ -7,132 +7,187 @@
   <title>For You — Lacoyeta</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="page6.css" />
 </head>
 <body>
 
-  <main class="p6-page">
+  <!-- ══════════════════════════════════════════
+       INTRO DARK SCREEN
+       ══════════════════════════════════════════ -->
+  <div class="intro-screen" id="introScreen">
+    <p class="intro-tagline">for you.</p>
+  </div>
 
-    <!-- ── OPENING ────────────────────────────────────────────────── -->
-    <section class="p6-opening">
-      <div class="p6-opening-inner">
-        <p class="p6-kicker reveal">and somewhere between all these memories</p>
-        <h1 class="p6-title reveal">I realized something.</h1>
+  <!-- ══════════════════════════════════════════
+       GLOBAL DUST LAYER
+       ══════════════════════════════════════════ -->
+  <div class="dust-layer" id="dustLayer" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════
+       ENVELOPE SCENE
+       ══════════════════════════════════════════ -->
+  <div class="env-scene" id="envScene">
+
+    <!-- Candles -->
+    <div class="candle candle-l" aria-hidden="true">
+      <div class="candle-glow"></div>
+      <div class="candle-flame-wrap">
+        <div class="candle-flame"></div>
       </div>
-    </section>
+      <div class="candle-wick"></div>
+      <div class="candle-pillar"></div>
+    </div>
+    <div class="candle candle-r" aria-hidden="true">
+      <div class="candle-glow"></div>
+      <div class="candle-flame-wrap">
+        <div class="candle-flame"></div>
+      </div>
+      <div class="candle-wick"></div>
+      <div class="candle-pillar"></div>
+    </div>
 
-    <!-- ── LETTER ─────────────────────────────────────────────────── -->
-    <section class="p6-letter-section">
-      <div class="p6-letter-wrap">
+    <div class="env-stage">
 
-        <!-- Block 1 -->
-        <div class="p6-block reveal">
-          <p class="p6-prose">Imagine being a boring guy, living an ordinary life —</p>
-          <p class="p6-prose">and then there's you,</p>
-          <p class="p6-prose p6-highlight">talking to me every single day like my presence actually mattered.</p>
+      <!-- ── Envelope = vintage photo (img/envelope.png) ───────── -->
+      <div class="envelope" id="envelope">
+
+        <!-- The envelope image fills this box -->
+        <div class="env-body"></div>
+
+        <!-- Transparent click target sitting over the wax seal in the photo.
+             It does not draw a seal — the photo already has one. It just
+             glows to invite a click and triggers the open sequence. -->
+        <button class="env-seal" id="sealBtn" aria-label="Break the seal to open">
+          <span class="seal-ring" aria-hidden="true"></span>
+        </button>
+
+      </div>
+
+      <p class="env-hint" id="envHint">— click the seal to open —</p>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       LETTER SCENE
+       ══════════════════════════════════════════ -->
+  <main class="letter-scene" id="letterScene">
+
+    <article class="letter-card" id="letterCard">
+
+      <!-- Paper fold marks — soft horizontal creases over the parchment photo -->
+      <div class="fold f1" aria-hidden="true"></div>
+      <div class="fold f2" aria-hidden="true"></div>
+      <div class="fold f3" aria-hidden="true"></div>
+
+      <!-- Coffee stain corner -->
+      <div class="coffee-stain" aria-hidden="true"></div>
+
+      <!-- Quill feather resting diagonally on the letter -->
+      <div class="feather-wrap" id="featherWrap" aria-hidden="true">
+        <span class="feather-icon">🪶</span>
+      </div>
+
+      <!-- Left margin line -->
+      <div class="margin-line" aria-hidden="true"></div>
+
+      <!-- ── Letter content ──────────────────── -->
+      <div class="letter-inner">
+
+        <div class="letter-head ls">
+          <span class="lh-place">Chennai,</span>
+          <span class="lh-date">July 2026</span>
         </div>
 
-        <!-- Divider thought -->
-        <div class="p6-divider-thought reveal">
-          <span>Before you —</span>
+        <div class="letter-ornament ls">❦</div>
+
+        <div class="letter-opening ls">
+          <p class="lo-kicker">and somewhere between all these memories</p>
+          <h1 class="lo-title">I realized something.</h1>
         </div>
 
-        <!-- Block 2 — the befores -->
-        <div class="p6-before-list reveal">
-          <div class="p6-before-item">
-            <span class="p6-before-dot"></span>
-            <p>I never travelled this far just to see someone.</p>
-          </div>
-          <div class="p6-before-item">
-            <span class="p6-before-dot"></span>
-            <p>I never bought gifts and waited nervously to hand them over.</p>
-          </div>
-          <div class="p6-before-item">
-            <span class="p6-before-dot"></span>
-            <p>I never stayed awake thinking about someone's smile, their laugh, or how their day went.</p>
-          </div>
-          <div class="p6-before-item">
-            <span class="p6-before-dot"></span>
-            <p>And I definitely never wrote poems.</p>
-          </div>
+        <p class="letter-salutation ls">Dearest,</p>
+
+        <div class="letter-block ls">
+          <p class="lp">Imagine being a boring guy, living an ordinary life —</p>
+          <p class="lp">and then there's you,</p>
+          <p class="lp lp-emph">talking to me every single day like my presence actually mattered.</p>
         </div>
 
-        <!-- Big statement -->
-        <div class="p6-statement reveal">
+        <div class="letter-divider ls"><span>❧ Before you ❧</span></div>
+
+        <div class="letter-list ls">
+          <div class="ll-item"><span class="ll-dot">✦</span><p>I never travelled this far just to see someone.</p></div>
+          <div class="ll-item"><span class="ll-dot">✦</span><p>I never bought gifts and waited nervously to hand them over.</p></div>
+          <div class="ll-item"><span class="ll-dot">✦</span><p>I never stayed awake thinking about someone's smile, their laugh, or how their day went.</p></div>
+          <div class="ll-item"><span class="ll-dot">✦</span><p>And I definitely never wrote poems.</p></div>
+        </div>
+
+        <div class="letter-statement ls">
           <p>Not like this.</p>
           <p>Not for anyone.</p>
         </div>
 
-        <!-- Block 3 -->
-        <div class="p6-block reveal">
-          <p class="p6-prose p6-highlight">You're the first person who made me want to turn memories into words.</p>
-          <p class="p6-prose">And maybe that's why this entire thing exists.</p>
+        <div class="letter-block ls">
+          <p class="lp lp-emph">You're the first person who made me want to turn memories into words.</p>
+          <p class="lp">And maybe that's why this entire thing exists.</p>
         </div>
 
-        <!-- Divider -->
-        <div class="p6-line-divider reveal"></div>
+        <div class="letter-rule ls"><span>✦</span></div>
 
-        <!-- Birthday section -->
-        <div class="p6-birthday-block reveal">
-          <p class="p6-birthday-label">your midnight call</p>
-          <p class="p6-prose">For my birthday, you called me at midnight and wished me.</p>
-          <p class="p6-prose">Honestly, I don't even remember the last time someone did that for me.</p>
-          <p class="p6-prose p6-highlight">But that night — it stayed with me longer than you probably realized.</p>
-          <p class="p6-prose">It made my entire day feel lighter.</p>
+        <div class="letter-aside ls">
+          <p class="la-label">your midnight call</p>
+          <p class="lp">For my birthday, you called me at midnight and wished me.</p>
+          <p class="lp">Honestly, I don't even remember the last time someone did that for me.</p>
+          <p class="lp lp-emph">But that night — it stayed with me longer than you probably realized.</p>
+          <p class="lp">It made my entire day feel lighter.</p>
         </div>
 
-        <!-- Divider -->
-        <div class="p6-line-divider reveal"></div>
+        <div class="letter-rule ls"><span>✦</span></div>
 
-        <!-- Her birthday -->
-        <div class="p6-birthday-block reveal">
-          <p class="p6-birthday-label">your birthday</p>
-          <p class="p6-prose">And for your birthday,</p>
-          <p class="p6-prose">I know you'll probably be busy.</p>
-          <p class="p6-prose">But a part of me still wishes I was there —</p>
-          <p class="p6-prose p6-highlight">to take you out somewhere, steal a few more hours with you,<br>and make another memory I'd replay for weeks afterward.</p>
+        <div class="letter-aside ls">
+          <p class="la-label">your birthday</p>
+          <p class="lp">And for your birthday,</p>
+          <p class="lp">I know you'll probably be busy.</p>
+          <p class="lp">But a part of me still wishes I was there —</p>
+          <p class="lp lp-emph">to take you out somewhere, steal a few more hours with you,<br>and make another memory I'd replay for weeks afterward.</p>
         </div>
 
-        <!-- Pretty note -->
-        <div class="p6-pretty-note reveal">
-          <p>I never fake my compliments.</p>
-          <p class="p6-pretty-main">So if I tell you you're pretty —</p>
-          <p class="p6-pretty-main">then you're pretty.</p>
+        <div class="letter-note ls">
+          <p class="ln-small">I never fake my compliments.</p>
+          <p class="ln-big">So if I tell you you're pretty —</p>
+          <p class="ln-big">then you're pretty.</p>
         </div>
 
         <!-- Birthday photos -->
-        <div class="p6-bday-photos reveal" id="bdaySection">
-          <div class="p6-bday-frame p6-bday--tilt-l">
-            <img src="bday pics/bday1.jpeg" alt="" />
-          </div>
-          <div class="p6-bday-frame p6-bday--tilt-r">
-            <img src="bday pics/bday2.jpeg" alt="" />
-          </div>
-          <div class="p6-bday-frame p6-bday--tilt-l2">
-            <img src="bday pics/bday3.jpeg" alt="" />
-          </div>
+        <div class="letter-photos ls" id="bdaySection">
+          <div class="lph lph-l"><img src="bday pics/bday1.jpeg" alt="" /></div>
+          <div class="lph lph-r"><img src="bday pics/bday2.jpeg" alt="" /></div>
+          <div class="lph lph-l2"><img src="bday pics/bday3.jpeg" alt="" /></div>
         </div>
 
-        <!-- Advance wishes -->
-        <div class="p6-wishes reveal">
-          <p class="p6-wishes-text"> Birthday Wishes,</p>
-          <p class="p6-wishes-name">Lacoyeta.</p>
-          <p class="p6-signature">— Sathyan</p>
+        <!-- Closing -->
+        <div class="letter-closing ls">
+          <p class="lc-line">Birthday Wishes,</p>
+          <p class="lc-name">Lacoyeta.</p>
+          <p class="lc-sig">— Sathyan</p>
+        </div>
+
+        <!-- Wax seal at bottom -->
+        <div class="letter-seal ls">
+          <div class="ls-circle">♥</div>
         </div>
 
       </div>
-    </section>
+    </article>
 
-    <!-- ── NAV ────────────────────────────────────────────────────── -->
-    <nav class="p6-nav reveal">
-      <a class="p6-back-btn" href="page5.html">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    <nav class="p6-nav ls">
+      <a class="nav-back" href="page5.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Back to the comic
       </a>
-      <a class="p6-home-btn" href="index.html">
-        Read from the beginning
-      </a>
+      <a class="nav-home" href="index.html">Read from the beginning</a>
     </nav>
 
   </main>
@@ -142,81 +197,154 @@
   <audio id="bgMusic" loop><source src="music/solo-piano.mp3" type="audio/mpeg" /></audio>
   <audio id="bdayMusic" loop><source src="bday pics/bday.mp3" type="audio/mpeg" /></audio>
 
+  <!-- ══════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════ -->
   <script>
-    const bgMusicEl = document.getElementById('bgMusic');
-    const bdayMusicEl = document.getElementById('bdayMusic');
-    const musicHintEl = document.getElementById('musicHint');
-    bgMusicEl.volume = 0.32;
+  /* ── DOM refs ───────────────────────────────────────────────── */
+  const introScreen = document.getElementById('introScreen');
+  const dustLayer   = document.getElementById('dustLayer');
+  const envScene    = document.getElementById('envScene');
+  const envelope    = document.getElementById('envelope');
+  const envHint     = document.getElementById('envHint');
+  const sealBtn     = document.getElementById('sealBtn');
+  const letterScene = document.getElementById('letterScene');
+  const featherWrap = document.getElementById('featherWrap');
+  const bgMusic     = document.getElementById('bgMusic');
+  const bdayMusic   = document.getElementById('bdayMusic');
+  const musicHint   = document.getElementById('musicHint');
 
-    // Try autoplay on load; browsers without a user gesture will block this.
-    bgMusicEl.play().catch(() => {});
+  /* ── Music ──────────────────────────────────────────────────── */
+  bgMusic.volume = 0.15;
+  bgMusic.play().catch(() => {});
+  setTimeout(() => { if (bgMusic.paused) musicHint.classList.add('visible'); }, 600);
+  bgMusic.addEventListener('play', () => musicHint.classList.remove('visible'));
 
-    // Show the hint only if autoplay actually got blocked.
-    setTimeout(() => { if (bgMusicEl.paused) musicHintEl.classList.add('visible'); }, 400);
-    bgMusicEl.addEventListener('play', () => musicHintEl.classList.remove('visible'));
+  function unlockAudio() {
+    if (bgMusic.paused) bgMusic.play().catch(() => {});
+    bdayMusic.play().then(() => bdayMusic.pause()).catch(() => {});
+    window.removeEventListener('click',    unlockAudio);
+    window.removeEventListener('touchend', unlockAudio);
+    window.removeEventListener('keydown',  unlockAudio);
+  }
+  window.addEventListener('click',    unlockAudio, { once: true });
+  window.addEventListener('touchend', unlockAudio, { once: true });
+  window.addEventListener('keydown',  unlockAudio, { once: true });
 
-    // Fallback: start on first tap/click if autoplay was blocked.
-    // Note: 'scroll' does NOT count as a user gesture for autoplay
-    // unlocking in any browser — only real click/touch/key events do.
-    // Also "primes" bdayMusic with a play+pause so iOS Safari unlocks it
-    // for the later hands-off play() triggered by the scroll observer below.
-    function unlockAudio() {
-      if (bgMusicEl.paused) bgMusicEl.play().catch(() => {});
-      bdayMusicEl.play().then(() => bdayMusicEl.pause()).catch(() => {});
-      window.removeEventListener('click', unlockAudio);
-      window.removeEventListener('touchend', unlockAudio);
-      window.removeEventListener('keydown', unlockAudio);
+  function fadeVol(audio, from, to, ms) {
+    const steps = 30, iv = ms / steps, d = (to - from) / steps;
+    let v = from;
+    const t = setInterval(() => {
+      v = Math.min(Math.max(v + d, 0), 1);
+      audio.volume = parseFloat(v.toFixed(3));
+      if ((d > 0 && v >= to) || (d < 0 && v <= to)) clearInterval(t);
+    }, iv);
+  }
+
+  /* ── Intro screen ───────────────────────────────────────────── */
+  setTimeout(() => introScreen.classList.add('gone'), 1600);
+
+  /* ── Dust particles ─────────────────────────────────────────── */
+  function spawnDust() {
+    const d = document.createElement('div');
+    d.className = 'dust';
+    const dx = (Math.random() - 0.5) * 60;
+    d.style.cssText = [
+      `left:${5 + Math.random() * 90}vw`,
+      `bottom:${Math.random() * 40}vh`,
+      `width:${1 + Math.random() * 2}px`,
+      `height:${1 + Math.random() * 2}px`,
+      `--dx:${dx}px`,
+      `animation-duration:${7 + Math.random() * 8}s`,
+      `opacity:${0.08 + Math.random() * 0.18}`
+    ].join(';');
+    dustLayer.appendChild(d);
+    setTimeout(() => d.remove(), 16000);
+  }
+  setInterval(spawnDust, 350);
+  for (let i = 0; i < 8; i++) spawnDust(); // initial burst
+
+  /* ── Rose petals ────────────────────────────────────────────── */
+  function spawnPetals() {
+    const colors = ['#3d0808','#5a0e15','#4a0c10','#2a0508','#6b1018','#7a1520','#380708'];
+    for (let i = 0; i < 28; i++) {
+      setTimeout(() => {
+        const p  = document.createElement('div');
+        const v  = Math.ceil(Math.random() * 4);
+        const sz = 9 + Math.random() * 13;
+        p.className = `petal petal-v${v}`;
+        p.style.cssText = [
+          `left:${20 + Math.random() * 60}vw`,
+          `top:${-5 - Math.random() * 8}vh`,
+          `width:${sz}px`,
+          `height:${sz * (1.3 + Math.random() * 0.4)}px`,
+          `background:${colors[Math.floor(Math.random() * colors.length)]}`,
+          `animation-duration:${5 + Math.random() * 5}s`,
+          `animation-delay:${Math.random() * 0.5}s`,
+          `opacity:${0.55 + Math.random() * 0.40}`,
+          `transform:rotate(${Math.random() * 360}deg)`
+        ].join(';');
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 12000);
+      }, i * 110);
     }
-    window.addEventListener('click', unlockAudio, { once: true });
-    window.addEventListener('touchend', unlockAudio, { once: true });
-    window.addEventListener('keydown', unlockAudio, { once: true });
+  }
 
-    // Fade volume helper
-    function fadeVol(audio, from, to, ms) {
-      const steps = 30, iv = ms / steps, d = (to - from) / steps;
-      let v = from;
-      const t = setInterval(() => {
-        v = Math.min(Math.max(v + d, 0), 1);
-        audio.volume = parseFloat(v.toFixed(3));
-        if ((d > 0 && v >= to) || (d < 0 && v <= to)) clearInterval(t);
-      }, iv);
-    }
+  /* ── Envelope open sequence (image envelope) ────────────────── */
+  sealBtn.addEventListener('click', () => {
+    sealBtn.disabled = true;
+    envHint.classList.add('hidden');
 
-    // Scroll-reveal
-    let bdayMusicTriggered = false;
+    // 1. Seal press feedback
+    sealBtn.classList.add('cracking');
 
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    // 2. Rose petals begin
+    setTimeout(spawnPetals, 200);
 
-    // Separate observer for bday music — triggers when photos scroll into view
-    const bdayObs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting && !bdayMusicTriggered) {
-          bdayMusicTriggered = true;
-          bdayObs.disconnect();
-          const bg   = document.getElementById('bgMusic');
-          const bday = document.getElementById('bdayMusic');
-          fadeVol(bg, bg.volume, 0, 1500);
-          setTimeout(() => {
-            bg.pause();
-            bday.volume = 0;
-            bday.play().catch(() => {});
-            fadeVol(bday, 0, 0.42, 1500);
-          }, 1500);
-        }
-      }),
-      { threshold: 0.1 }
-    );
-    const bdaySection = document.getElementById('bdaySection');
-    if (bdaySection) bdayObs.observe(bdaySection);
+    // 3. Camera zoom toward the envelope
+    setTimeout(() => envelope.classList.add('zooming'), 550);
+
+    // 4. Scene fades
+    setTimeout(() => envScene.classList.add('fade-out'), 1150);
+
+    // 5. Reveal letter
+    setTimeout(() => {
+      envScene.style.display = 'none';
+      letterScene.classList.add('active');
+      window.scrollTo(0, 0);
+      revealLetter();
+    }, 1950);
+  });
+
+  /* ── Letter reveal (sentence by sentence) ───────────────────── */
+  function revealLetter() {
+    const sentences = document.querySelectorAll('.ls');
+    sentences.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 300 + i * 480);
+    });
+
+    // Feather appears
+    setTimeout(() => featherWrap.classList.add('visible'), 800);
+
+    // Bday music crossfade when photos come into view
+    let bdayDone = false;
+    const bdayObs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !bdayDone) {
+        bdayDone = true;
+        bdayObs.disconnect();
+        fadeVol(bgMusic, bgMusic.volume, 0, 1500);
+        setTimeout(() => {
+          bgMusic.pause();
+          bdayMusic.volume = 0;
+          bdayMusic.play().catch(() => {});
+          fadeVol(bdayMusic, 0, 0.38, 1500);
+        }, 1500);
+      }
+    }, { threshold: 0.1 });
+    const bs = document.getElementById('bdaySection');
+    if (bs) bdayObs.observe(bs);
+  }
   </script>
+
 </body>
 </html>

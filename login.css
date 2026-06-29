@@ -76,7 +76,10 @@ body {
   align-items: center;
   justify-content: center;
   padding: clamp(2rem, 5vw, 4rem);
-  background: var(--paper);
+  background:
+    radial-gradient(circle at 80% 20%, rgba(243, 193, 75, 0.18), transparent 55%),
+    radial-gradient(circle at 20% 85%, rgba(53, 120, 95, 0.16), transparent 55%),
+    var(--bg);
 }
 
 .login-card {
@@ -108,56 +111,106 @@ body {
 }
 
 .login-sub {
-  margin: 0 0 2rem;
+  margin: 0 0 1.5rem;
   color: var(--muted);
   font-size: 1rem;
 }
 
-.login-form {
+/* ── Dot display ──────────────────────────────────────────────── */
+.dial-dots {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.login-input {
-  width: 100%;
-  padding: 0.9rem 1rem;
-  font-size: 1.4rem;
-  letter-spacing: 0.5rem;
-  text-align: center;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--bg);
+.dial-dots span {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: transparent;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.dial-dots span.filled {
+  background: var(--leaf);
+  border-color: var(--leaf);
+}
+
+/* ── Dial pad grid ─────────────────────────────────────────────── */
+.dial-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  grid-auto-rows: 72px;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.dial-key {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(24, 35, 33, 0.07);
   color: var(--ink);
   font-family: "Inter", Arial, sans-serif;
-}
-
-.login-input:focus {
-  outline: none;
-  border-color: var(--leaf);
-  box-shadow: 0 0 0 3px rgba(53, 120, 95, 0.15);
-}
-
-.login-btn {
-  padding: 0.9rem 1rem;
-  border: none;
-  border-radius: 10px;
-  background: var(--petal);
-  color: #ffffff;
-  font-family: "Inter", Arial, sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
   cursor: pointer;
-  transition: background 200ms ease, transform 200ms ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  user-select: none;
+  transition: background 80ms ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.login-btn:hover {
-  background: #b43e57;
-  transform: translateY(-1px);
+.dial-key:hover {
+  background: rgba(53, 120, 95, 0.12);
+}
+
+.dial-key:active {
+  background: rgba(53, 120, 95, 0.25);
+  transition: none;
+}
+
+.dk-num {
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.dk-sub {
+  display: none;
+}
+
+.dial-empty {
+  width: 72px;
+  height: 72px;
+}
+
+.dial-key--del {
+  background: transparent;
+  font-size: 1.4rem;
+  color: var(--muted);
+}
+
+.dial-key--del:hover {
+  background: rgba(196, 73, 99, 0.08);
+  color: var(--petal);
+}
+
+.dial-key--del:active {
+  background: rgba(196, 73, 99, 0.15);
+  transition: none;
 }
 
 .login-error {
-  margin: 1rem 0 0;
+  margin: 0.75rem 0 0;
   font-size: 0.9rem;
   color: var(--petal);
   opacity: 0;
@@ -183,11 +236,23 @@ body {
   }
   .login-photo-side {
     padding: 2.5rem 1.5rem 1rem;
+    flex: none;
   }
   .login-form-side {
-    padding: 1.5rem 1.5rem 3rem;
+    flex: 1;
+    padding: 2rem 1.5rem 3rem;
   }
   .login-frame-inner img {
     width: clamp(180px, 50vw, 240px);
+  }
+  .dial-pad {
+    grid-template-columns: repeat(3, 68px);
+    grid-auto-rows: 68px;
+    gap: 14px;
+  }
+  .dial-key,
+  .dial-empty {
+    width: 68px;
+    height: 68px;
   }
 }

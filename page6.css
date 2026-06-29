@@ -1,433 +1,907 @@
+/* ═══════════════════════════════════════════════════════════════
+   page6.css  —  Vintage letter experience
+   Palette: bg #d9c4a3 · letter #f5ecd8 · ink #3d2a1d
+            wax #7f1d1d · gold #c4a962 · shadow rgba(0,0,0,.25)
+
+   IMAGES YOU NEED TO ADD (create an "img" folder next to page6.html):
+     img/envelope.png      → the vintage sealed envelope photo (pic3)
+     img/letter-paper.jpg  → an aged parchment texture (pic4 vibe).
+                             Use a SEAMLESS / plain parchment WITHOUT a
+                             quill drawn in — the quill is the 🪶 element.
+   If you don't want an img/ folder, drop the two files next to
+   page6.html and change the two url(...) paths below.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Variables ────────────────────────────────────────────────── */
 :root {
-  --bg: #f3faf3;
-  --ink: #182321;
-  --muted: #52605d;
-  --line: rgba(24, 35, 33, 0.12);
-  --petal: #c44963;
-  --leaf: #35785f;
-  --sun: #f3c14b;
-  --shadow: 0 22px 55px rgba(24, 35, 33, 0.12);
-  font-family: "Inter", Arial, sans-serif;
-  line-height: 1.6;
+  --bg:      #d9c4a3;
+  --letter:  #f5ecd8;
+  --ink:     #3d2a1d;
+  --ink2:    #2a1a0d;
+  --muted:   #7a5c38;
+  --wax:     #7f1d1d;
+  --wax-hi:  #a82828;
+  --gold:    #c4a962;
+  --shadow:  rgba(0,0,0,.25);
+  --grain:   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.76' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E");
+
+  /* ── Image paths — change here if your filenames differ ─────── */
+  --envelope-img: url("images/envelope.png");
+  --paper-img:    url("images/letter-paper.jpg");
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* ── Reset ────────────────────────────────────────────────────── */
+/* *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; } */
 
+/* ── Body / wooden table ──────────────────────────────────────── */
 body {
-  background: var(--bg);
+  font-family: "Cormorant Garamond", Georgia, serif;
   color: var(--ink);
-  overflow-x: hidden;
-}
-
-img { display: block; max-width: 100%; }
-
-/* ── Page ─────────────────────────────────────────────────────────────── */
-.p6-page {
   min-height: 100vh;
+  overflow-x: hidden;
+  /* Candle ambient flicker — almost imperceptible */
+  animation: candleAmbient 7s ease-in-out infinite;
   background:
-    linear-gradient(90deg, rgba(53,120,95,0.07) 1px, transparent 1px),
-    linear-gradient(180deg, #f3faf3 0%, #ffffff 50%, #eef9f1 100%);
-  background-size: 64px 64px, auto;
+    var(--grain),
+    /* Wood grain lines */
+    repeating-linear-gradient(
+      88deg,
+      transparent,
+      transparent 72px,
+      rgba(100,60,15,0.04) 72px,
+      rgba(100,60,15,0.04) 73px
+    ),
+    repeating-linear-gradient(
+      91deg,
+      transparent,
+      transparent 108px,
+      rgba(80,42,8,0.03) 108px,
+      rgba(80,42,8,0.03) 109px
+    ),
+    /* Warm candlelight from left */
+    radial-gradient(ellipse 55% 100% at -5% 45%, rgba(255,180,80,0.16) 0%, transparent 50%),
+    /* Deep vignette */
+    radial-gradient(ellipse 100% 100% at 50% 50%, transparent 10%, rgba(15,6,1,0.60) 100%),
+    /* Dark mahogany table */
+    linear-gradient(158deg, #4a2608 0%, #3a1c05 28%, #2c1404 55%, #401e07 78%, #4e2a0a 100%);
 }
 
-/* ── Opening ──────────────────────────────────────────────────────────── */
-.p6-opening {
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: clamp(5rem, 14vw, 9rem) 1.5rem clamp(3rem, 8vw, 5rem);
+@keyframes candleAmbient {
+  0%, 100% { filter: brightness(1)    saturate(1);    }
+  28%       { filter: brightness(0.97) saturate(0.98); }
+  55%       { filter: brightness(1.02) saturate(1.01); }
+  82%       { filter: brightness(0.98) saturate(0.99); }
 }
 
-.p6-opening-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
+/* ═══════════════════════════════════════════════════════════════
+   INTRO SCREEN
+   ═══════════════════════════════════════════════════════════════ */
 
-.p6-kicker {
-  color: var(--muted);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-
-.p6-title {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(3.5rem, 12vw, 8rem);
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-}
-
-/* ── Letter section ───────────────────────────────────────────────────── */
-.p6-letter-section {
-  padding: 0 0 clamp(4rem, 10vw, 7rem);
-}
-
-.p6-letter-wrap {
-  width: min(680px, calc(100% - 48px));
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 6vw, 4rem);
-}
-
-/* ── Prose block ──────────────────────────────────────────────────────── */
-.p6-block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.p6-prose {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
-  font-weight: 500;
-  color: var(--muted);
-  line-height: 1.85;
-}
-
-.p6-highlight {
-  color: var(--ink);
-  font-weight: 600;
-  font-size: clamp(1.2rem, 2.8vw, 1.6rem);
-}
-
-/* ── Divider thought ──────────────────────────────────────────────────── */
-.p6-divider-thought {
-  text-align: center;
-  position: relative;
-  padding: 0.5rem 0;
-}
-
-.p6-divider-thought::before,
-.p6-divider-thought::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 28%;
-  height: 1px;
-  background: var(--line);
-}
-
-.p6-divider-thought::before { left: 0; }
-.p6-divider-thought::after  { right: 0; }
-
-.p6-divider-thought span {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(0.85rem, 1.8vw, 1rem);
-  font-style: italic;
-  color: var(--petal);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: var(--bg);
-  padding: 0 1rem;
-  position: relative;
-  z-index: 1;
-}
-
-/* ── Before list ──────────────────────────────────────────────────────── */
-.p6-before-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-  padding-left: 0.5rem;
-}
-
-.p6-before-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.p6-before-dot {
-  flex-shrink: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--petal);
-  margin-top: 0.65em;
-}
-
-.p6-before-item p {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
-  font-weight: 500;
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-/* ── Big statement ────────────────────────────────────────────────────── */
-.p6-statement {
-  text-align: center;
-  padding: clamp(1rem, 3vw, 2rem) 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.p6-statement p {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-}
-
-/* ── Line divider ─────────────────────────────────────────────────────── */
-.p6-line-divider {
-  height: 1px;
-  background: var(--line);
-  margin: clamp(0.5rem, 2vw, 1rem) 0;
-}
-
-/* ── Birthday block ───────────────────────────────────────────────────── */
-.p6-birthday-block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.2rem, 4vw, 2rem);
-  border-left: 3px solid var(--sun);
-  background: rgba(243,193,75,0.05);
-  border-radius: 0 8px 8px 0;
-}
-
-.p6-birthday-label {
-  color: var(--leaf);
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin-bottom: 0.4rem;
-}
-
-/* ── Closing ──────────────────────────────────────────────────────────── */
-.p6-closing {
-  text-align: center;
-  padding: clamp(2rem, 5vw, 3.5rem) 0 0;
-}
-
-.p6-closing-line {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-  font-weight: 600;
-  font-style: italic;
-  color: var(--muted);
-  line-height: 1.3;
-}
-
-/* ── Wishes ───────────────────────────────────────────────────────────── */
-.p6-wishes {
-  text-align: center;
-  padding: clamp(1.5rem, 4vw, 2.5rem) 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.p6-wishes-text {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 500;
-  color: var(--muted);
-}
-
-.p6-wishes-name {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-}
-
-.p6-signature {
-  margin-top: 0.8rem;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1rem, 2.2vw, 1.3rem);
-  font-weight: 600;
-  color: var(--petal);
-  letter-spacing: 0.04em;
-}
-
-/* ── Nav ──────────────────────────────────────────────────────────────── */
-.p6-nav {
-  width: min(680px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: clamp(2rem, 6vw, 4rem) 0 clamp(3rem, 8vw, 5rem);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-}
-
-.p6-back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.4rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--muted);
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
-}
-
-.p6-back-btn:hover {
-  color: var(--ink);
-  border-color: var(--petal);
-  transform: translateX(-3px);
-}
-
-.p6-home-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.4rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--muted);
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  transition: color 200ms ease, border-color 200ms ease;
-}
-
-.p6-home-btn:hover {
-  color: var(--ink);
-  border-color: var(--leaf);
-}
-
-/* ── Scroll reveal ────────────────────────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 820ms cubic-bezier(0.22,1,0.36,1),
-              transform 820ms cubic-bezier(0.22,1,0.36,1);
-}
-
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-}
-
-/* ── Responsive ───────────────────────────────────────────────────────── */
-@media (max-width: 520px) {
-  .p6-title { font-size: clamp(3rem, 18vw, 5rem); }
-  .p6-wishes-name { font-size: clamp(2.2rem, 14vw, 4rem); }
-  .p6-statement p { font-size: clamp(1.8rem, 10vw, 3rem); }
-}
-
-/* ── Birthday photos ──────────────────────────────────────────────────── */
-
-.p6-bday-photos {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: clamp(0.6rem, 2vw, 1.4rem);
-  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(1rem, 3vw, 2rem);
-  flex-wrap: wrap;
-}
-
-.p6-bday-frame {
-  background: #f5f0e8;
-  padding: 10px 10px 38px;
-  box-shadow: 0 8px 32px rgba(24,35,33,0.18), 0 2px 8px rgba(24,35,33,0.1);
-  width: clamp(140px, 26vw, 220px);
-  flex-shrink: 0;
-  transition: box-shadow 280ms ease, transform 280ms ease;
-}
-
-.p6-bday-frame img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: top;
-  display: block;
-}
-
-.p6-bday-frame:hover {
-  box-shadow: 0 16px 48px rgba(24,35,33,0.24);
-  z-index: 2;
-}
-
-.p6-bday--tilt-l  { transform: rotate(-3deg); }
-.p6-bday--tilt-r  { transform: rotate(2.5deg); }
-.p6-bday--tilt-l2 { transform: rotate(-1.2deg) translateY(-10px); }
-
-.p6-bday--tilt-l:hover  { transform: rotate(-1deg) scale(1.04); }
-.p6-bday--tilt-r:hover  { transform: rotate(1deg) scale(1.04); }
-.p6-bday--tilt-l2:hover { transform: rotate(-0.5deg) scale(1.04) translateY(-10px); }
-
-@media (max-width: 520px) {
-  .p6-bday-frame { width: clamp(110px, 28vw, 160px); }
-}
-
-/* ── Pretty note ──────────────────────────────────────────────────────── */
-
-.p6-pretty-note {
-  text-align: center;
-  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(1rem, 3vw, 2rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.p6-pretty-note p:first-child {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1rem, 2.2vw, 1.3rem);
-  font-style: italic;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.p6-pretty-main {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.8rem, 5vw, 3.2rem);
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-}
-
-/* ── Music hint badge ─────────────────────────────────────────────── */
-.music-hint {
+.intro-screen {
   position: fixed;
-  left: 50%;
-  bottom: 1.6rem;
-  transform: translate(-50%, 12px);
-  margin: 0;
-  padding: 0.55rem 1.1rem;
-  background: rgba(24, 35, 33, 0.86);
-  color: #fcfffb;
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 0.85rem;
-  border-radius: 999px;
-  box-shadow: 0 10px 28px rgba(24, 35, 33, 0.25);
+  inset: 0;
+  z-index: 999;
+  background: #0d0804;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1.2s ease;
+}
+
+.intro-screen.gone {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 300ms ease, transform 300ms ease;
-  z-index: 50;
 }
 
-.music-hint.visible {
+.intro-tagline {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: rgba(200, 170, 100, 0.65);
+  letter-spacing: 0.05em;
+  animation: taglinePulse 1.4s ease-in-out;
+}
+
+@keyframes taglinePulse {
+  0%   { opacity: 0; transform: scale(0.92); }
+  60%  { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0.65; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DUST PARTICLES
+   ═══════════════════════════════════════════════════════════════ */
+
+.dust-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.dust {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(215, 190, 130, 0.85);
+  pointer-events: none;
+  animation: dustFloat var(--dur, 9s) ease-in forwards;
+}
+
+@keyframes dustFloat {
+  0%   { transform: translateY(0)     translateX(0);        opacity: 0;   }
+  8%   { opacity: 1;                                                       }
+  88%  { opacity: 0.6;                                                     }
+  100% { transform: translateY(-180px) translateX(var(--dx, 20px)); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ROSE PETALS
+   ═══════════════════════════════════════════════════════════════ */
+
+.petal { position: fixed; pointer-events: none; z-index: 500; animation: petalFall linear forwards; }
+.petal-v1 { border-radius: 150% 0 150% 0; }
+.petal-v2 { border-radius: 100% 25% 100% 25%; }
+.petal-v3 { border-radius: 140% 10% 90% 20%; }
+.petal-v4 { border-radius: 80% 50% 120% 30% / 110% 40% 80% 50%; }
+
+@keyframes petalFall {
+  0%   { transform: translateY(0)    translateX(0)    rotate(0deg);   opacity: 0.9;  }
+  20%  { transform: translateY(18vh) translateX(15px)  rotate(72deg);               }
+  40%  { transform: translateY(38vh) translateX(-12px) rotate(144deg);              }
+  60%  { transform: translateY(58vh) translateX(20px)  rotate(216deg);              }
+  80%  { transform: translateY(78vh) translateX(-8px)  rotate(288deg);              }
+  100% { transform: translateY(105vh) translateX(6px)  rotate(360deg); opacity: 0;   }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CANDLES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* .candle {
+  position: absolute;
+  bottom: clamp(8%, 12vh, 18%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+}
+
+.candle-l { left:  clamp(2rem, 8vw, 6rem); }
+.candle-r { right: clamp(2rem, 8vw, 6rem); }
+
+/* Glow halo around the candle */
+/* .candle-glow {
+  position: absolute;
+  bottom: 0;
+  width: 90px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 30%, rgba(255,200,80,0.28) 0%, transparent 70%);
+  animation: glowPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50%       { opacity: 1.0; transform: scale(1.1); }
+}
+
+.candle-flame-wrap {
+  animation: flameFlicker 1.8s ease-in-out infinite alternate;
+  transform-origin: 50% 100%;
+}
+
+.candle-flame {
+  width: 12px;
+  height: 26px;
+  border-radius: 50% 50% 30% 30% / 70% 70% 30% 30%;
+  background: radial-gradient(ellipse at 50% 65%,
+    rgba(255,255,180,1) 0%,
+    rgba(255,180,40,1) 40%,
+    rgba(255,110,20,0.9) 70%,
+    rgba(200,60,0,0) 100%
+  );
+  box-shadow: 0 0 12px 4px rgba(255,160,40,0.45);
+}
+
+@keyframes flameFlicker {
+  0%   { transform: scaleX(1.0) scaleY(1.0) rotate(-1deg); }
+  25%  { transform: scaleX(0.85) scaleY(1.06) rotate( 2deg); }
+  50%  { transform: scaleX(0.95) scaleY(0.94) rotate(-2deg); }
+  75%  { transform: scaleX(1.08) scaleY(1.08) rotate( 1deg); }
+  100% { transform: scaleX(0.90) scaleY(1.02) rotate(-1deg); }
+} */ 
+
+/* .candle-wick {
+  width: 2px;
+  height: 5px;
+  background: #2a1a08;
+} */
+
+/* .candle-pillar {
+  width: 22px;
+  height: clamp(55px, 8vh, 80px);
+  border-radius: 2px 2px 3px 3px;
+  background: linear-gradient(to right, #ead8a8 0%, #f5ecd0 40%, #f0e5c0 65%, #e0cfaa 100%);
+  box-shadow: inset -4px 0 8px rgba(0,0,0,0.12);
+} */
+
+/* Hide candles on small screens to keep envelope centered */
+/* @media (max-width: 640px) {
+  .candle { display: none; }
+} */
+
+/* ═══════════════════════════════════════════════════════════════
+   ENVELOPE SCENE
+   ═══════════════════════════════════════════════════════════════ */
+
+.env-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.9s ease;
+}
+
+/* .env-scene.fade-out {
+  opacity: 0;
+  pointer-events: none;
+} */
+
+.env-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+/* ── Envelope (now an image) ──────────────────────────────────── */
+.envelope {
+  position: relative;
+  width: clamp(300px, 54vw, 540px);
+  /* Match the photo's landscape proportion (~3:2). Tweak if your
+     envelope.png has a different aspect ratio. */
+  aspect-ratio: 3 / 2;
+  cursor: pointer;
+  transition: transform 0.45s ease;
+  /* Soft large shadow grounds the envelope on the table */
+  filter:
+    drop-shadow(0 25px 60px var(--shadow))
+    drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+}
+
+/* Subtle float on hover (before opening) */
+.envelope:not(.zooming):hover {
+  transform: rotate(1deg) translateY(-7px);
+}
+
+/* Camera zoom when opening */
+.envelope.zooming {
+  animation: cameraZoom 1.5s ease forwards;
+}
+
+@keyframes cameraZoom {
+  0%   { transform: scale(1) translateY(0);    opacity: 1; }
+  100% { transform: scale(1.45) translateY(-8%); opacity: 0; }
+}
+
+/* ── Envelope photo ───────────────────────────────────────────── */
+.env-body {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background-image: var(--envelope-img);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Warm candle highlight blended over the upper-left of the photo */
+  box-shadow: inset 0 0 70px rgba(20,8,1,0.20);
+}
+
+/* Optional warm light wash on the envelope to match the candle scene */
+.env-body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: radial-gradient(ellipse 75% 80% at 18% 12%, rgba(255,200,90,0.16) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* ── Wax-seal click target (sits over the seal in the photo) ──── */
+.env-seal {
+  position: absolute;
+  /* The seal in the photo sits a touch above centre. Nudge these
+     two values if the hotspot doesn't line up with your image. */
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  width: clamp(56px, 13%, 96px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: transparent;   /* photo already shows the wax seal */
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Glowing ring invites the click */
+.seal-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,205,140,0.40);
+  animation: sealPulse 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sealPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.45; box-shadow: 0 0 0 0 rgba(255,200,120,0.20); }
+  50%       { transform: scale(1.14); opacity: 0.95; box-shadow: 0 0 20px 5px rgba(255,200,120,0.16); }
+}
+
+.env-seal:hover .seal-ring { opacity: 1; border-color: rgba(255,215,160,0.7); }
+
+/* Press + vanish feedback on click */
+.env-seal.cracking {
+  animation: sealPress 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+@keyframes sealPress {
+  0%   { transform: translate(-50%, -50%) scale(1);    }
+  35%  { transform: translate(-50%, -50%) scale(0.88); }
+  100% { transform: translate(-50%, -50%) scale(1.1);  opacity: 0; }
+}
+
+/* ── Hint text ────────────────────────────────────────────────── */
+.env-hint {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(0.82rem, 1.5vw, 1rem);
+  font-style: italic;
+  color: rgba(232, 205, 150, 0.55);
+  letter-spacing: 0.10em;
+  user-select: none;
+  transition: opacity 0.4s ease;
+}
+
+.env-hint.hidden { opacity: 0; pointer-events: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   LETTER SCENE
+   ═══════════════════════════════════════════════════════════════ */
+
+.letter-scene {
+  display: none;
+  min-height: 100vh;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 4vw, 2rem) 4rem;
+  position: relative;
+}
+
+.letter-scene.active {
+  display: block;
+  animation: sceneReveal 0.85s ease forwards;
+}
+
+@keyframes sceneReveal {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Feather / quill — positioned diagonally on the letter ───── */
+.feather-wrap {
+  position: absolute;
+  left: -6%;
+  top: 12%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+  z-index: 6;
+  transform: rotate(-32deg);
+  transform-origin: 50% 85%;
+  animation: featherWobble 6s ease-in-out infinite;
+}
+
+.feather-wrap.visible { opacity: 0.82; }
+
+.feather-icon {
+  font-size: clamp(5rem, 11vw, 8.5rem);
+  display: block;
+  filter:
+    drop-shadow(2px 6px 12px rgba(60,30,5,0.35))
+    drop-shadow(-1px -1px 3px rgba(0,0,0,0.10));
+}
+
+@keyframes featherWobble {
+  0%, 100% { transform: rotate(-32deg); }
+  30%       { transform: rotate(-30deg) translateX(2px)  translateY(-1px); }
+  65%       { transform: rotate(-34deg) translateX(-1px) translateY(1px); }
+}
+
+/* ── Letter card — now a real parchment photo ─────────────────── */
+.letter-card {
+  position: relative;
+  isolation: isolate;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(2rem, 6vw, 4.5rem);
+  border-radius: 4px;
+
+  /* Fallback colour shows if the image hasn't loaded yet */
+  background-color: #e8d8ac;
+  background-image:
+    /* Cream veil — mutes whatever photo is underneath so text stays readable */
+    linear-gradient(rgba(244,235,213,0.80), rgba(236,224,198,0.80)),
+    /* warm candlelight */
+    radial-gradient(ellipse 70% 60% at -8% -8%, rgba(255,215,120,0.14) 0%, transparent 60%),
+    /* extra fibre */
+    var(--grain),
+    /* the parchment photo */
+    var(--paper-img);
+  background-size: cover, cover, 280px 280px, cover;
+  background-position: center, center, top left, center;
+  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+
+  box-shadow:
+    0 25px 60px var(--shadow),
+    0 8px 22px rgba(0,0,0,0.18),
+    /* Frayed edge vignette — progressive darkening toward edges */
+    inset 0 0 140px rgba(78,46,8,0.26),
+    inset 0 0 70px  rgba(78,46,8,0.16),
+    inset 0 0 28px  rgba(58,34,6,0.10);
+}
+
+/* ── Left margin line ─────────────────────────────────────────── */
+.margin-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: clamp(1.5rem, 4.5vw, 3.2rem);
+  width: 1px;
+  background: rgba(170,70,50,0.16);
+  pointer-events: none;
+}
+
+/* ── Fold marks — soft horizontal creases over the photo ──────── */
+.fold {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  pointer-events: none;
+}
+
+.fold::before,
+.fold::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+}
+
+.fold::before {
+  top: 0;
+  background: linear-gradient(to right,
+    transparent 1%,
+    rgba(255,245,210,0.30) 8%,
+    rgba(255,245,210,0.40) 50%,
+    rgba(255,245,210,0.30) 92%,
+    transparent 99%
+  );
+}
+
+.fold::after {
+  bottom: 0;
+  background: linear-gradient(to right,
+    transparent 1%,
+    rgba(60,35,8,0.20) 8%,
+    rgba(60,35,8,0.28) 50%,
+    rgba(60,35,8,0.20) 92%,
+    transparent 99%
+  );
+}
+
+.f1 { top: 33%; }
+.f2 { top: 50%; }
+.f3 { top: 66%; }
+
+/* ── Coffee stain ─────────────────────────────────────────────── */
+.coffee-stain {
+  position: absolute;
+  top: -14px;
+  right: clamp(1.5rem, 5vw, 3rem);
+  width: 62px;
+  height: 58px;
+  border-radius: 50% 48% 52% 50% / 50% 52% 48% 50%;
+  background: radial-gradient(
+    ellipse at 48% 52%,
+    transparent 36%,
+    rgba(100,58,18,0.14) 50%,
+    rgba(80,45,12,0.18) 65%,
+    rgba(60,32,8,0.10) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LETTER CONTENT
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Sentence reveal animation */
+.ls {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.75s ease, transform 0.6s ease;
+}
+
+.ls.visible {
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: none;
+}
+
+/* ── Letter head ──────────────────────────────────────────────── */
+.letter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.4rem;
+  gap: 1rem;
+}
+
+.lh-place,
+.lh-date {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.92rem, 1.6vw, 1.08rem);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── Ornament ─────────────────────────────────────────────────── */
+.letter-ornament {
+  text-align: center;
+  font-size: 1.65rem;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+}
+
+/* ── Opening ──────────────────────────────────────────────────── */
+.letter-opening { text-align: center; margin-bottom: 1.6rem; }
+
+.lo-kicker {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.8vw, 1.14rem);
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.03em;
+}
+
+.lo-title {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+/* ── Salutation ───────────────────────────────────────────────── */
+.letter-salutation {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+  color: var(--ink2);
+  margin-bottom: 1.4rem;
+}
+
+/* ── Prose ────────────────────────────────────────────────────── */
+.letter-block { margin-bottom: 1.5rem; }
+
+.lp {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1.12rem, 2vw, 1.38rem);
+  color: var(--ink2);
+  line-height: 1.88;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.12em;
+}
+
+.lp.lp-emph {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: clamp(1.18rem, 2.1vw, 1.44rem);
+}
+
+/* ── Ornamental divider ───────────────────────────────────────── */
+.letter-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.8rem 0;
+}
+
+.letter-divider::before,
+.letter-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0.5;
+}
+
+.letter-divider span {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.5vw, 0.98rem);
+  color: var(--gold);
+  white-space: nowrap;
+  letter-spacing: 0.10em;
+}
+
+/* ── List ─────────────────────────────────────────────────────── */
+.letter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0 0 1.5rem 0.4rem;
+}
+
+.ll-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.ll-dot {
+  font-size: 0.62rem;
+  color: var(--gold);
+  margin-top: 0.58rem;
+  flex-shrink: 0;
+}
+
+.ll-item p {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1.1rem, 1.9vw, 1.3rem);
+  color: var(--ink2);
+  line-height: 1.72;
+}
+
+/* ── Statement ────────────────────────────────────────────────── */
+.letter-statement {
+  text-align: center;
+  margin: 1.4rem 0;
+}
+
+.letter-statement p {
+  font-family: "Dancing Script", cursive;
+  font-weight: 600;
+  font-size: clamp(1.28rem, 2.4vw, 1.6rem);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* ── Rule ─────────────────────────────────────────────────────── */
+.letter-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.8rem 0;
+}
+
+.letter-rule::before,
+.letter-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.30;
+}
+
+.letter-rule span { font-size: 0.62rem; color: var(--gold); }
+
+/* ── Aside ────────────────────────────────────────────────────── */
+.letter-aside {
+  margin: 0 0 1.8rem;
+  padding: 1.1rem 1.3rem;
+  border-left: 2px solid rgba(196,169,98,0.35);
+  background: rgba(196,169,98,0.055);
+}
+
+.la-label {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 0.80rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 0.55rem;
+}
+
+/* ── Note ─────────────────────────────────────────────────────── */
+.letter-note {
+  text-align: center;
+  margin: 1.8rem 0;
+  padding: 1.1rem;
+  border-top:    1px solid rgba(196,169,98,0.28);
+  border-bottom: 1px solid rgba(196,169,98,0.28);
+}
+
+.ln-small {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.88rem, 1.5vw, 1.04rem);
+  color: var(--muted);
+  margin-bottom: 0.28rem;
+  letter-spacing: 0.04em;
+}
+
+.ln-big {
+  font-family: "Dancing Script", cursive;
+  font-weight: 600;
+  font-size: clamp(1.32rem, 2.5vw, 1.65rem);
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+/* ── Photos ───────────────────────────────────────────────────── */
+.letter-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.lph {
+  background: #f8f2e0;
+  padding: 10px 10px 28px;
+  box-shadow: 0 6px 22px var(--shadow), 0 2px 6px rgba(0,0,0,0.14);
+}
+
+.lph-l  { transform: rotate(-2.2deg); }
+.lph-r  { transform: rotate( 1.8deg); }
+.lph-l2 { transform: rotate(-1.4deg); }
+
+.lph img {
+  display: block;
+  width: clamp(130px, 22vw, 200px);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  filter: sepia(0.45) contrast(0.90) brightness(0.88) saturate(0.75);
+}
+
+/* ── Closing ──────────────────────────────────────────────────── */
+.letter-closing {
+  text-align: right;
+  margin: 2rem 0 1.5rem;
+}
+
+.lc-line {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.98rem, 1.7vw, 1.12rem);
+  color: var(--muted);
+  margin-bottom: 0.28rem;
+  letter-spacing: 0.04em;
+}
+
+.lc-name {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 0.08rem;
+}
+
+.lc-sig {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.84rem, 1.4vw, 0.96rem);
+  color: var(--muted);
+}
+
+/* ── Bottom wax seal ────────────────────────────────────────────
+.letter-seal { display: flex; justify-content: center; margin-top: 1.8rem; }
+
+.ls-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 48% 52% 50% 50% / 52% 48% 52% 48%;
+  background: radial-gradient(circle at 38% 36%, var(--wax-hi) 0%, var(--wax) 50%, #4a0a0a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: rgba(255,215,170,0.80);
+  box-shadow:
+    0 0 0 2px rgba(180,60,40,0.22),
+    0 4px 14px rgba(0,0,0,0.38),
+    inset 0 2px 4px rgba(220,100,70,0.18),
+    inset 0 -2px 5px rgba(0,0,0,0.28);
+} */
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════════ */
+
+.p6-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 680px;
+  margin: 3rem auto 0;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-back,
+.nav-home {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.88rem, 1.6vw, 1.02rem);
+  color: rgba(62, 35, 8, 0.55);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 180ms ease;
+}
+
+.nav-back:hover,
+.nav-home:hover {
+  color: rgba(62, 35, 8, 0.85);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MUSIC HINT
+   ═══════════════════════════════════════════════════════════════ */
+
+.music-hint {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: rgba(232, 205, 150, 0.55);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 300;
+  white-space: nowrap;
+}
+
+.music-hint.visible { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 600px) {
+  .letter-card {
+    padding: 2rem 1.4rem 2.5rem;
+  }
+
+  .lph img {
+    width: clamp(110px, 28vw, 155px);
+  }
+
+  .p6-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .feather-wrap {
+    right: 0.5rem;
+    top: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .envelope {
+    width: 94vw;
+  }
 }
